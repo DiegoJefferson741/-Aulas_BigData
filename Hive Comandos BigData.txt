@@ -1,3 +1,7 @@
+hadoop fs -ls /user/cloudera/locacao
+
+
+
 hadoop fs -mkdir /user/cloudera/locacao
 
 ls
@@ -6,6 +10,11 @@ ls
 cd /media/sf_Hadoop
 
 hadoop fs -copyFromLocal *.csv /user/cloudera/locacao
+
+apagar os arquivos....
+hadoop fs -rm /user/cloudera/locacao/*.csv
+
+
 
 hadoop fs -ls /user/cloudera/locacao
 
@@ -28,7 +37,41 @@ show databases;
 
 use locacao;
 
+CREATE EXTERNAL TABLE CLIENTES (idcliente int, cnh string, cpf string, validadecnh date, nome string, datacadastro date, datanascimento date, telefone string, status string) row format delimited fields terminated by ', ' STORED AS TEXTFILE;
+
+
+LOAD DATA INPATH '/user/cloudera/locacao/clientes.csv' INTO TABLE CLIENTES;
+
+select * from clientes;
+
+drop table veiculos;
+
+
 CREATE EXTERNAL TABLE VEICULOS (idveiculo int, dataaquisicao date, ano int, modelo string, placa string, status string, diaria double) row format delimited fields terminated by ', ' STORED AS TEXTFILE;
+
+
+LOAD DATA INPATH '/user/cloudera/locacao/veiculos.csv' INTO TABLE VEICULOS;
+
+
+SELECT * FROM VEICULOS;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
